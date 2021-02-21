@@ -1,4 +1,6 @@
-### Hi there 👋
+### Hrisey - ferry schedule
+
+This project will display ferry schedule for Hrísey ferry.
 
 <!--
 **hrisey/hrisey** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
