@@ -41,6 +41,8 @@
 		'Laugardagur'
 	];
 
+	let tableBody = null;
+
 	function handleClientLoad() {
 		gapi.load('client:auth2', initClient);
 	}
@@ -65,6 +67,63 @@
 		var textContent = document.createTextNode(message);
 		p.appendChild(textContent);
 		content.appendChild(p);
+	}
+
+	function createTable()
+	{
+		let content = document.getElementById('content');
+		let tbl = document.createElement('table');
+		tbl.appendChild(createTableHead());
+
+		let tbody = document.createElement('tbody');
+		tbl.appendChild(tbody);
+		content.appendChild(tbl);
+		tableBody = tbody;
+	}
+
+	function createTableHead()
+	{
+		let thead = document.createElement('thead');
+		let tr = document.createElement('tr');
+		let titleCol = document.createElement('th');
+		titleCol.appendChild(document.createTextNode('Ferð'));
+		tr.appendChild(titleCol);
+
+		let time1Col = document.createElement('th');
+		time1Col.appendChild(document.createTextNode('Frá Hrísey'));
+		tr.appendChild(time1Col);
+
+		let time2Col = document.createElement('th');
+		time2Col.appendChild(document.createTextNode('Frá Árskógssandi'));
+		tr.appendChild(time2Col);
+
+		thead.appendChild(tr);
+		return thead;
+	}
+
+	function createTableRow(event)
+	{
+		let tr = document.createElement('tr');
+
+		//Title
+		let title = event.summary.replace(/\(([^)]+)\)/, "")
+		let titleCol = document.createElement('th');
+		titleCol.appendChild(document.createTextNode(title));
+		tr.appendChild(titleCol)
+
+		//From Hrisey
+		let time1 = getTime(event.start.dateTime);
+		let time1Col = document.createElement('td');
+		time1Col.appendChild(document.createTextNode(time1));
+		tr.appendChild(time1Col);
+
+		//From Arskogssandur
+		let time2 = getTime(event.end.dateTime);
+		let time2Col = document.createElement('td');
+		time2Col.appendChild(document.createTextNode(time2));
+
+		tr.appendChild(time2Col);
+		tableBody.appendChild(tr);
 	}
 
 	function pad(num) {
@@ -99,11 +158,9 @@
 		}).then(function(response) {
 			const events = response.result.items;
 			if (events.length > 0) {
+				createTable();
 				events.forEach(function(event) {
-					var time1 = getTime(event.start.dateTime);
-					var time2 = getTime(event.end.dateTime);
-					var title = event.summary.replace(/\(([^)]+)\)/, "")
-					appendPre(title + ' (Frá Hrísey: ' + time1 + '. Frá Árskógssandi ' + time2 + ')')
+					this.createTableRow(event);
 				});
 			}
 			else {
