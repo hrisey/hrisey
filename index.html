@@ -122,6 +122,10 @@
 		let time2Col = document.createElement('td');
 		time2Col.appendChild(document.createTextNode(time2));
 
+		if (title.includes('Upphringi')) {
+			tr.classList.add('red');
+		}
+
 		tr.appendChild(time2Col);
 		tableBody.appendChild(tr);
 	}
