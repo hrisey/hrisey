@@ -126,6 +126,12 @@
 			tr.classList.add('red');
 		}
 
+		let now = new Date();
+		let endTime = new Date(event.end.dateTime);
+
+		if (now.getTime() >= endTime.getTime()) {
+			tr.classList.add('past');
+		}
 		tr.appendChild(time2Col);
 		tableBody.appendChild(tr);
 	}
