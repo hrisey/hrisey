@@ -1,0 +1,21 @@
+body {
+    background-color: white;
+    font-family: sans-serif;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+th{
+    text-align: left;
+    min-width: 110px;
+}
+
+.red{
+    color: red;
+}
+
+.past{
+    color: gray;
+}
