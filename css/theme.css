@@ -16,6 +16,11 @@ th{
     color: red;
 }
 
+.current{
+    font-weight: bold;
+    color: green;
+}
+
 .past{
     color: gray;
 }

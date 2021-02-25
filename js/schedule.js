@@ -114,11 +114,17 @@ function createTableRow(event)
 	}
 
 	let now = new Date();
+	let startTime = new Date(event.start.dateTime);
 	let endTime = new Date(event.end.dateTime);
+	endTime.setMinutes(50);
 
-	if (now.getTime() >= endTime.getTime()) {
+	if (now >= endTime) {
 		tr.classList.add('past');
 	}
+	if (now >= startTime && now <= endTime) {
+		tr.classList.add('current');
+	}
+
 	tr.appendChild(time2Col);
 	tableBody.appendChild(tr);
 }
