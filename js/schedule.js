@@ -140,6 +140,8 @@ function getTime(time)
 }
 
 function listUpcomingEvents(date) {
+	let content = document.getElementById('content');
+	content.innerHTML = '';
 	const dateStart = new Date(date);
 	dateStart.setHours(0,0);
 	const dateEnd = new Date(date);
@@ -169,5 +171,19 @@ function listUpcomingEvents(date) {
 		else {
 			appendPre('Engin gögn fundust. Reynið aftur síðar.');
 		}
+	});
+}
+
+function addDatePicker(date) {
+	flatpickr('.flatpickr', {
+		minDate: 'today',
+		maxDate: new Date().fp_incr(30*3),
+		locale: 'is',
+		dateFormat: "d.m.Y",
+		onChange: function(selectedDates, dateStr, instance) {
+			if (selectedDates[0]) {
+				listUpcomingEvents(selectedDates[0]);
+			}
+		},
 	});
 }
