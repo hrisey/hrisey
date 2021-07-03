@@ -7,12 +7,30 @@ h1 {
     font-size: 24px;
 }
 
+@media only screen {
+	thead tr {
+		background: #000;
+		color: #fff;
+	}
+}
+
+@media print {
+	.selectedDate {
+		border-bottom: 1px solid;
+		padding-bottom: 15px;
+	}
+}
+
 th{
     text-align: left;
     min-width: 110px;
 }
+th:first-child {
+	min-width:70px;
+}
 
-.red{
+.red,
+.leaves20 td:last-child {
     color: red;
 }
 
@@ -23,4 +41,51 @@ th{
 
 .past{
     color: gray;
+}
+
+table tbody tr:nth-child(odd) {
+	background:#f1f1f1;
+}
+
+table th,
+table td {
+	padding: 4px;
+}
+
+.date {
+	position: relative;
+	display:inline-block;
+}
+
+@media print {
+	.date {
+		display:none;
+	}
+}
+
+@media (min-width:480px) {
+	.date:before {
+		content: '';
+		width: 18px;
+		height: 18px;
+		background: url('../images/calendar-search.svg') no-repeat;
+		display: block;
+		position: absolute;
+		right: 10px;
+		top: 4px;
+		pointer-events: none;
+	}
+}
+
+.date input {
+	background:none;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	transition:border-color .4s ease;
+}
+
+.date input:focus {
+	outline:0;
+	border-color:#000;
 }

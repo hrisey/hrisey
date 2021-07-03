@@ -43,14 +43,16 @@ function initClient() {
 	}).then(function () {
 		const date = new Date();
 		listUpcomingEvents(date);
+		addDatePicker(date);
 	}, function (error) {
 		appendPre(JSON.stringify(error, null, 2));
 	});
 }
 
-function appendPre(message) {
+function appendPre(message, className = '') {
 	var content = document.getElementById('content');
 	var p = document.createElement("p");
+	p.classList.add(className);
 	var textContent = document.createTextNode(message);
 	p.appendChild(textContent);
 	content.appendChild(p);
@@ -124,6 +126,9 @@ function createTableRow(event)
 	if (now >= startTime && now <= endTime) {
 		tr.classList.add('current');
 	}
+	if (time2.includes(':20')) {
+		tr.classList.add('leaves20');
+	}
 
 	tr.appendChild(time2Col);
 	tableBody.appendChild(tr);
@@ -151,7 +156,7 @@ function listUpcomingEvents(date) {
 		+ ', ' + dateStart.getDate()
 		+ '. ' + months[dateStart.getMonth()]
 		+ ' ' + dateStart.getFullYear();
-	appendPre(selectedDate)
+	appendPre(selectedDate, 'selectedDate')
 
 	gapi.client.calendar.events.list({
 		calendarId: CALENDAR_ID,
