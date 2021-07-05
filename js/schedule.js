@@ -56,8 +56,7 @@ function appendPre(message, className = '') {
 	if (className) {
 		p.classList.add(className);
 	}
-	var textContent = document.createTextNode(message);
-	p.appendChild(textContent);
+	p.innerHTML = message;
 	content.appendChild(p);
 }
 
@@ -206,7 +205,6 @@ function addDatePicker(date) {
 function addCallUpWarning()
 {
 	if (isCallUp) {
-		console.log('is call up');
-		appendPre('* Upphringiferðir þarf að panta fyrirfram á áætlunartíma ferjunnar, milli kl. 9:00 og 21:30', 'red callUp');
+		appendPre('Upphringiferðir þarf að panta fyrirfram á <br>áætlunartíma ferjunnar, milli kl. 9:00 og 21:30', 'red');
 	}
 }

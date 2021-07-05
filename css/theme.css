@@ -90,6 +90,17 @@ table td {
 	border-color:#000;
 }
 
-.callUp {
+#content p.red:last-child {
+	position: relative;
 	max-width:400px;
+	padding-left:20px;
+}
+
+#content p.red:last-child:before {
+	content:'*';
+	position: absolute;
+	left:0;
+	top: -6px;
+	font-size:40px;
+	color:red;
 }
