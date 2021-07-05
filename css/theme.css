@@ -89,3 +89,7 @@ table td {
 	outline:0;
 	border-color:#000;
 }
+
+.callUp {
+	max-width:400px;
+}

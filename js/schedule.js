@@ -29,6 +29,7 @@ const days = [
 ];
 
 let tableBody = null;
+let isCallUp = false;
 
 function handleClientLoad() {
 	gapi.load('client:auth2', initClient);
@@ -52,7 +53,9 @@ function initClient() {
 function appendPre(message, className = '') {
 	var content = document.getElementById('content');
 	var p = document.createElement("p");
-	p.classList.add(className);
+	if (className) {
+		p.classList.add(className);
+	}
 	var textContent = document.createTextNode(message);
 	p.appendChild(textContent);
 	content.appendChild(p);
@@ -97,6 +100,10 @@ function createTableRow(event)
 	//Title
 	let title = event.summary.replace(/\(([^)]+)\)/, "")
 	let titleCol = document.createElement('th');
+
+	if (title.includes('Upphringi')) {
+		title = title + '*';
+	}
 	titleCol.appendChild(document.createTextNode(title));
 	tr.appendChild(titleCol)
 
@@ -113,6 +120,7 @@ function createTableRow(event)
 
 	if (title.includes('Upphringi')) {
 		tr.classList.add('red');
+		isCallUp = true;
 	}
 
 	let now = new Date();
@@ -147,6 +155,7 @@ function getTime(time)
 function listUpcomingEvents(date) {
 	let content = document.getElementById('content');
 	content.innerHTML = '';
+	isCallUp = false;
 	const dateStart = new Date(date);
 	dateStart.setHours(0,0);
 	const dateEnd = new Date(date);
@@ -172,6 +181,7 @@ function listUpcomingEvents(date) {
 			events.forEach(function(event) {
 				this.createTableRow(event);
 			});
+			addCallUpWarning();
 		}
 		else {
 			appendPre('Engin gögn fundust. Reynið aftur síðar.');
@@ -191,4 +201,12 @@ function addDatePicker(date) {
 			}
 		},
 	});
+}
+
+function addCallUpWarning()
+{
+	if (isCallUp) {
+		console.log('is call up');
+		appendPre('* Upphringiferðir þarf að panta fyrirfram á áætlunartíma ferjunnar, milli kl. 9:00 og 21:30', 'red callUp');
+	}
 }
