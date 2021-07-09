@@ -30,13 +30,27 @@ th:first-child {
 }
 
 .red,
-.leaves20 td:last-child {
+.leaves20:not(.past) td:last-child {
     color: red;
 }
 
 .current{
     font-weight: bold;
     color: green;
+}
+.current th,
+.current td {
+	padding-top: 15px;
+}
+.current th {
+	position: relative;
+}
+.current th:first-child:before {
+	content:'Núna';
+	position: absolute;
+	top: 3px;
+	font-size: 12px;
+	font-weight: 400;
 }
 
 .past{
@@ -57,6 +71,12 @@ table td {
 	display:inline-block;
 }
 
+.date label {
+	display: block;
+	font-size: 12px;
+	margin: 0 0 5px 5px;
+}
+
 @media print {
 	.date {
 		display:none;
@@ -72,7 +92,7 @@ table td {
 		display: block;
 		position: absolute;
 		right: 10px;
-		top: 4px;
+		top: 22px;
 		pointer-events: none;
 	}
 }
