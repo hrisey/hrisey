@@ -191,7 +191,7 @@ function listUpcomingEvents(date) {
 function addDatePicker(date) {
 	flatpickr('.flatpickr', {
 		minDate: 'today',
-		maxDate: new Date().fp_incr(30*3),
+		maxDate: '2021-08-31',
 		locale: 'is',
 		dateFormat: "d.m.Y",
 		onChange: function(selectedDates, dateStr, instance) {
