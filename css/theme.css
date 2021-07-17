@@ -124,3 +124,8 @@ table td {
 	font-size:40px;
 	color:red;
 }
+
+.tickets {
+	font-weight: bold;
+	padding-left: 20px;
+}

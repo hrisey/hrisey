@@ -180,6 +180,7 @@ function listUpcomingEvents(date) {
 			events.forEach(function(event) {
 				this.createTableRow(event);
 			});
+			addTicketInfo();
 			addCallUpWarning();
 		}
 		else {
@@ -200,6 +201,11 @@ function addDatePicker(date) {
 			}
 		},
 	});
+}
+
+function addTicketInfo()
+{
+	appendPre('Miðar eru seldir um borð í ferjunni', 'tickets');
 }
 
 function addCallUpWarning()
