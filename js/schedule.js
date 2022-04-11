@@ -192,7 +192,7 @@ function listUpcomingEvents(date) {
 function addDatePicker(date) {
 	flatpickr('.flatpickr', {
 		minDate: 'today',
-		maxDate: '2022-03-31',
+		maxDate: '2022-05-31',
 		locale: 'is',
 		dateFormat: "d.m.Y",
 		onChange: function(selectedDates, dateStr, instance) {
