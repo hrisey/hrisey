@@ -28,6 +28,8 @@ const days = [
 	'Laugardagur'
 ];
 
+const datePickerMaxDate = '2022-05-31';
+
 let tableBody = null;
 let isCallUp = false;
 
@@ -192,7 +194,7 @@ function listUpcomingEvents(date) {
 function addDatePicker(date) {
 	flatpickr('.flatpickr', {
 		minDate: 'today',
-		maxDate: '2022-05-31',
+		maxDate: datePickerMaxDate,
 		locale: 'is',
 		dateFormat: "d.m.Y",
 		onChange: function(selectedDates, dateStr, instance) {
@@ -201,6 +203,11 @@ function addDatePicker(date) {
 			}
 		},
 	});
+
+	if (date <= new Date(datePickerMaxDate)) {
+		document.querySelector('div.date').classList.add('show');
+	}
+
 }
 
 function addTicketInfo()
