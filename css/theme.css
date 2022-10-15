@@ -34,7 +34,14 @@ th:first-child {
     color: red;
 }
 
-.current{
+.strikethrough {
+	text-decoration: line-through;
+}
+.description {
+	font-size: 14px;
+	color: #707070;
+}
+.current:not(.strikethrough){
     font-weight: bold;
     color: green;
 }
@@ -45,7 +52,7 @@ th:first-child {
 .current th {
 	position: relative;
 }
-.current th:first-child:before {
+.current:not(.strikethrough) th:first-child:before {
 	content:'Núna';
 	position: absolute;
 	top: 3px;
@@ -57,7 +64,11 @@ th:first-child {
     color: gray;
 }
 
-table tbody tr:nth-child(odd) {
+table {
+	max-width: 390px;
+	border-spacing: 0;
+}
+table tbody tr.odd {
 	background:#f1f1f1;
 }
 

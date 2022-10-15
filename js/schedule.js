@@ -94,9 +94,13 @@ function createTableHead()
 	return thead;
 }
 
-function createTableRow(event)
+function createTableRow(event, index)
 {
 	let tr = document.createElement('tr');
+	let isOdd = index % 2 === 0;
+	if (isOdd) {
+		tr.classList.add('odd');
+	}
 
 	//Title
 	let title = event.summary.replace(/\(([^)]+)\)/, "")
@@ -104,6 +108,10 @@ function createTableRow(event)
 
 	if (title.includes('Upphringi')) {
 		title = title + '*';
+	}
+	if (title.includes('---')) {
+		tr.classList.add('strikethrough');
+		title = title.replace('---', '');
 	}
 	titleCol.appendChild(document.createTextNode(title));
 	tr.appendChild(titleCol)
@@ -141,6 +149,19 @@ function createTableRow(event)
 
 	tr.appendChild(time2Col);
 	tableBody.appendChild(tr);
+
+	if (event.description) {
+		let trDesc = document.createElement('tr');
+		trDesc.classList.add('description');
+		if (isOdd) {
+			trDesc.classList.add('odd');
+		}
+		let tdDesc = document.createElement('td');
+		tdDesc.setAttribute('colspan', '3');
+		tdDesc.appendChild(document.createTextNode(event.description));
+		trDesc.appendChild(tdDesc);
+		tableBody.appendChild(trDesc);
+	}
 }
 
 function pad(num) {
@@ -179,8 +200,10 @@ function listUpcomingEvents(date) {
 		const events = response.result.items;
 		if (events.length > 0) {
 			createTable();
+			let i = 0;
 			events.forEach(function(event) {
-				this.createTableRow(event);
+				this.createTableRow(event, i);
+				i++;
 			});
 			addTicketInfo();
 			addCallUpWarning();
