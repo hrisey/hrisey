@@ -28,7 +28,7 @@ const days = [
 	'Laugardagur'
 ];
 
-const datePickerMaxDate = '2023-12-31';
+const datePickerMaxDate = '2024-08-31';
 
 let tableBody = null;
 let isCallUp = false;
