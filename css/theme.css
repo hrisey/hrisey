@@ -43,6 +43,9 @@ th:first-child {
 body.large th:first-child {
 	min-width: 100px;
 }
+body.large .red th:first-child {
+	min-width: 180px;
+}
 
 .red,
 .leaves20:not(.past) td:last-child {
@@ -84,6 +87,7 @@ body.large .current td {
 }
 
 table {
+	white-space: nowrap;
 	max-width: 390px;
 	border-spacing: 0;
 }
@@ -156,6 +160,9 @@ body.large table td {
 	position: relative;
 	max-width:400px;
 	padding-left:20px;
+}
+body.large #content p.red:last-child {
+	font-size: 1.2rem;
 }
 
 #content p.red:last-child:before {
