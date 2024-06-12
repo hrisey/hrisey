@@ -30,6 +30,11 @@ const days = [
 
 const datePickerMaxDate = '2024-08-31';
 
+const urlParams = new URLSearchParams(window.location.search);
+const showDatepicker = urlParams.get('datepicker') !== 'false';
+const showTickets = urlParams.get('tickets') !== 'false';
+const size = urlParams.get('size');
+
 let tableBody = null;
 let isCallUp = false;
 
@@ -38,6 +43,8 @@ function handleClientLoad() {
 }
 
 function initClient() {
+	createHeading();
+	initParams();
 	gapi.client.init({
 		apiKey: API_KEY,
 		clientId: CLIENT_ID,
@@ -50,6 +57,18 @@ function initClient() {
 	}, function (error) {
 		appendPre(JSON.stringify(error, null, 2));
 	});
+}
+
+function createHeading() {
+	const h1 = document.createElement('h1');
+	h1.textContent = 'Hríseyjarferjan Sævar - áætlun dagsins';
+	document.querySelector('header').append(h1);
+}
+
+function initParams() {
+	if (size === 'large') {
+		document.body.classList.add('large');
+	}
 }
 
 function appendPre(message, className = '') {
@@ -227,7 +246,7 @@ function addDatePicker(date) {
 		},
 	});
 
-	if (date <= new Date(datePickerMaxDate)) {
+	if (showDatepicker && date <= new Date(datePickerMaxDate)) {
 		document.querySelector('div.date').classList.add('show');
 	}
 
@@ -235,7 +254,9 @@ function addDatePicker(date) {
 
 function addTicketInfo()
 {
-	appendPre('Miðar eru seldir um borð í ferjunni', 'tickets');
+	if (showTickets) {
+		appendPre('Miðar eru seldir um borð í ferjunni', 'tickets');
+	}
 }
 
 function addCallUpWarning()

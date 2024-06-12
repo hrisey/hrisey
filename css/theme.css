@@ -1,10 +1,15 @@
 body {
     background-color: white;
 	font-family: 'Raleway', sans-serif;
+	font-size: 16px;
+}
+
+body.large {
+	font-size: 24px;
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 
 @media only screen {
@@ -28,6 +33,9 @@ th{
 th:first-child {
 	min-width:70px;
 }
+body.large th:first-child {
+	min-width: 100px;
+}
 
 .red,
 .leaves20:not(.past) td:last-child {
@@ -38,7 +46,7 @@ th:first-child {
 	text-decoration: line-through;
 }
 .description {
-	font-size: 14px;
+	font-size: 0.875rem;
 	color: #707070;
 }
 .current:not(.strikethrough){
@@ -52,11 +60,15 @@ th:first-child {
 .current th {
 	position: relative;
 }
+body.large .current th,
+body.large .current td {
+	padding-top: 12px;
+}
 .current:not(.strikethrough) th:first-child:before {
 	content:'Núna';
 	position: absolute;
 	top: 3px;
-	font-size: 12px;
+	font-size: 0.75rem;
 	font-weight: 400;
 }
 
@@ -68,6 +80,10 @@ table {
 	max-width: 390px;
 	border-spacing: 0;
 }
+body.large table {
+	max-width: 480px;
+	width: 100%;
+}
 table tbody tr.odd {
 	background:#f1f1f1;
 }
@@ -75,6 +91,11 @@ table tbody tr.odd {
 table th,
 table td {
 	padding: 4px;
+}
+
+body.large table th,
+body.large table td {
+	padding: 5px 10px;
 }
 
 .date {
@@ -87,7 +108,7 @@ table td {
 
 .date label {
 	display: block;
-	font-size: 12px;
+	font-size: 0.75rem;
 	margin: 0 0 5px 5px;
 }
 
@@ -135,7 +156,7 @@ table td {
 	position: absolute;
 	left:0;
 	top: -6px;
-	font-size:40px;
+	font-size:2.5rem;
 	color:red;
 }
 
