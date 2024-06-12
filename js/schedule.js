@@ -46,6 +46,7 @@ function handleClientLoad() {
 function initClient() {
 	createHeading();
 	initParams();
+	initAutoRefresh();
 	gapi.client.init({
 		apiKey: API_KEY,
 		clientId: CLIENT_ID,
@@ -73,6 +74,22 @@ function initParams() {
 	if (center === 'true') {
 		document.body.classList.add('center');
 	}
+}
+
+function checkTimeAndRefresh() {
+	const now = new Date();
+	const hours = now.getHours();
+	const minutes = now.getMinutes();
+
+	// Check if the hour is odd and minutes = 0 or the minutes are exactly 50
+	if (hours % 2 === 1 && minutes === 0 || minutes === 50) {
+		location.reload();
+	}
+}
+
+function initAutoRefresh() {
+	// Check the time every minute (60000 milliseconds)
+	setInterval(checkTimeAndRefresh, 60000);
 }
 
 function appendPre(message, className = '') {
