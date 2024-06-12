@@ -11,6 +11,13 @@ body.large {
 h1 {
     font-size: 1.5rem;
 }
+body.center h1,
+body.center .selectedDate {
+	text-align: center;
+}
+body.center table {
+	margin-inline: auto;
+}
 
 @media only screen {
 	thead tr {

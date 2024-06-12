@@ -34,6 +34,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const showDatepicker = urlParams.get('datepicker') !== 'false';
 const showTickets = urlParams.get('tickets') !== 'false';
 const size = urlParams.get('size');
+const center = urlParams.get('center');
 
 let tableBody = null;
 let isCallUp = false;
@@ -68,6 +69,9 @@ function createHeading() {
 function initParams() {
 	if (size === 'large') {
 		document.body.classList.add('large');
+	}
+	if (center === 'true') {
+		document.body.classList.add('center');
 	}
 }
 
