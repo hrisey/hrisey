@@ -81,8 +81,10 @@ function checkTimeAndRefresh() {
 	const hours = now.getHours();
 	const minutes = now.getMinutes();
 
-	// Check if the hour is odd and minutes = 0 or the minutes are exactly 50
-	if (hours % 2 === 1 && minutes === 0 || minutes === 50) {
+	// Auto refresh if the following conditions are met:
+	// at 00:00
+	// hour is odd number and minutes = 0 or minutes = 50
+	if ((hours === 0 && minutes === 0) || hours % 2 === 1 && (minutes === 0 || minutes === 50)) {
 		location.reload();
 	}
 }
