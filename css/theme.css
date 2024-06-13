@@ -83,7 +83,10 @@ body.large .current td {
 }
 
 .past{
-    color: gray;
+    color: #808080;
+}
+body.large .past {
+	color: #a5a5a5;
 }
 
 table {
