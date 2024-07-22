@@ -32,7 +32,6 @@ const datePickerMaxDate = '2024-08-31';
 
 const urlParams = new URLSearchParams(window.location.search);
 const showDatepicker = urlParams.get('datepicker') !== 'false';
-const showTickets = urlParams.get('tickets') !== 'false';
 const size = urlParams.get('size');
 const center = urlParams.get('center');
 
@@ -247,7 +246,6 @@ function listUpcomingEvents(date) {
 				this.createTableRow(event, i);
 				i++;
 			});
-			addTicketInfo();
 			addCallUpWarning();
 		}
 		else {
@@ -273,13 +271,6 @@ function addDatePicker(date) {
 		document.querySelector('div.date').classList.add('show');
 	}
 
-}
-
-function addTicketInfo()
-{
-	if (showTickets) {
-		appendPre('Miðar eru seldir um borð í ferjunni', 'tickets');
-	}
 }
 
 function addCallUpWarning()
