@@ -28,7 +28,7 @@ const days = [
 	'Laugardagur'
 ];
 
-const datePickerMaxDate = '2026-01-02';
+const datePickerMaxDate = '2026-03-31';
 
 const urlParams = new URLSearchParams(window.location.search);
 const showDatepicker = urlParams.get('datepicker') !== 'false';
