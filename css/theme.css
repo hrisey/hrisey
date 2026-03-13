@@ -47,8 +47,10 @@ body.large .red th:first-child {
 	min-width: 180px;
 }
 
-.red,
-.leaves20:not(.past) td:last-child {
+.leaves20:not(.past):not(.red) td:last-child {
+	color: orange;
+}
+.red{
     color: red;
 }
 
