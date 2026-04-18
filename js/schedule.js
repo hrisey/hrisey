@@ -77,8 +77,8 @@ function initParams() {
 
 function checkTimeAndRefresh() {
 	const now = new Date();
-	const hours = now.getHours();
-	const minutes = now.getMinutes();
+	const hours = now.getUTCHours();
+	const minutes = now.getUTCMinutes();
 
 	// Auto refresh if the following conditions are met:
 	// at 00:00
@@ -176,7 +176,7 @@ function createTableRow(event, index)
 	let now = new Date();
 	let startTime = new Date(event.start.dateTime);
 	let endTime = new Date(event.end.dateTime);
-	endTime.setMinutes(50);
+	endTime.setUTCMinutes(50);
 
 	if (now >= endTime) {
 		tr.classList.add('past');
@@ -212,28 +212,31 @@ function pad(num) {
 function getTime(time)
 {
 	time = new Date(time);
-	return pad(time.getHours()) + ':' + pad(time.getMinutes());
+	return pad(time.getUTCHours()) + ':' + pad(time.getUTCMinutes());
 }
 
 function listUpcomingEvents(date) {
 	let content = document.getElementById('content');
 	content.innerHTML = '';
 	isCallUp = false;
-	const dateStart = new Date(date);
-	dateStart.setHours(0,0);
-	const dateEnd = new Date(date);
-	dateEnd.setHours(23,59,59);
+	const d = new Date(date);
+	const year = d.getFullYear();
+	const month = pad(d.getMonth() + 1);
+	const day = pad(d.getDate());
 
-	const selectedDate = days[dateStart.getDay()]
-		+ ', ' + dateStart.getDate()
-		+ '. ' + months[dateStart.getMonth()]
-		+ ' ' + dateStart.getFullYear();
+	const timeMin = `${year}-${month}-${day}T00:00:00Z`;
+	const timeMax = `${year}-${month}-${day}T23:59:59Z`;
+	const dateStart = new Date(timeMin);
+	const selectedDate = days[dateStart.getUTCDay()]
+		+ ', ' + dateStart.getUTCDate()
+		+ '. ' + months[dateStart.getUTCMonth()]
+		+ ' ' + dateStart.getUTCFullYear();
 	appendPre(selectedDate, 'selectedDate')
 
 	gapi.client.calendar.events.list({
 		calendarId: CALENDAR_ID,
-		timeMin: dateStart.toISOString(),
-		timeMax: dateEnd.toISOString(),
+		timeMin: timeMin,
+		timeMax: timeMax,
 		showDeleted: false,
 		singleEvents: true,
 		orderBy: 'startTime'
